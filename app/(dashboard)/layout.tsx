@@ -21,7 +21,7 @@ export default async function layout({
   }
 
   return (
-    <SidebarProvider
+    <SidebarProvider suppressHydrationWarning
       style={
         {
           "--sidebar-width": "calc(var(--spacing) * 72)",

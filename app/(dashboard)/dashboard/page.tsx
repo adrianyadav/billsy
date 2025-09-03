@@ -1,17 +1,17 @@
-import { ChartAreaInteractive } from "@/components/chart-area-interactive";
-import { DataTable } from "@/components/data-table";
-import { SectionCards } from "@/components/section-cards";
-
-import data from "../data.json";
+import { DashboardHeader } from "@/components/dashboard-header";
+import { MedicalDashboardCards } from "@/components/medical-dashboard-cards";
+import { DailyMetricsCards } from "@/components/daily-metrics-cards";
+import { SummaryMetricsCards } from "@/components/summary-metrics-cards";
+import { RecentTransactionsTable } from "@/components/recent-transactions-table";
 
 export default async function Page() {
   return (
     <>
-      <SectionCards />
-      <div className="px-4 lg:px-6">
-        <ChartAreaInteractive />
-      </div>
-      <DataTable data={data} />
+      <DashboardHeader />
+      <MedicalDashboardCards />
+      <DailyMetricsCards />
+      <SummaryMetricsCards />
+      <RecentTransactionsTable />
     </>
   );
 }
