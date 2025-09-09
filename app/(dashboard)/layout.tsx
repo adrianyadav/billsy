@@ -2,7 +2,7 @@ import { AppSidebar } from "@/components/app-sidebar";
 
 import { SiteHeader } from "@/components/site-header";
 
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { MainDashboard, SidebarProvider } from "@/components/ui/sidebar";
 
 import { auth } from "@/lib/auth"; // path to your Better Auth server instance
 import { headers } from "next/headers";
@@ -32,8 +32,9 @@ export default async function layout({
       <AppSidebar
         user={{ ...session.user, image: session.user.image ?? null }}
         variant="inset"
+        className="bg-white border-r"
       />
-      <SidebarInset>
+      <MainDashboard className="">
         <SiteHeader />
         <div className="flex flex-1 flex-col">
           <div className="@container/main flex flex-1 flex-col gap-2">
@@ -42,7 +43,7 @@ export default async function layout({
             </div>
           </div>
         </div>
-      </SidebarInset>
+      </MainDashboard>
     </SidebarProvider>
   );
 }

@@ -15,25 +15,30 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export function SiteHeader() {
   return (
-    <header className="flex h-(--header-height) shrink-0 items-center gap-2 border-b transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-(--header-height)">
-      <div className="flex w-full items-center gap-1 px-4 lg:gap-2 lg:px-6">
-        <SidebarTrigger className="-ml-1" />
-        <Separator
-          orientation="vertical"
-          className="mx-2 data-[orientation=vertical]:h-4"
-        />
-        <h1 className="text-base font-medium">Dashboard</h1>
+    <header className="flex h-(--header-height) shrink-0 items-center gap-2 border-b bg-white">
+      <div className="flex w-full items-center gap-4 px-4 lg:px-6">
+        {/* Left: Sidebar Trigger */}
+        <div className="flex items-center gap-2">
+          <SidebarTrigger className="-ml-1" />
+          <Separator
+            orientation="vertical"
+            className="mx-2 data-[orientation=vertical]:h-4"
+          />
+        </div>
 
-        {/* Search Bar */}
-        <div className="ml-auto flex items-center gap-2">
-          <div className="relative hidden md:block">
+        {/* Center: Search Bar */}
+        <div className="flex-1 flex justify-center">
+          <div className="relative w-full max-w-md">
             <IconSearch className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
             <Input
               placeholder="Search patients, invoices..."
-              className="w-64 pl-9"
+              className="pl-9 w-full"
             />
           </div>
+        </div>
 
+        {/* Right: Notifications and User Profile */}
+        <div className="flex items-center gap-2">
           {/* Notifications */}
           <Button variant="ghost" size="icon" className="relative">
             <IconBell className="h-4 w-4" />
@@ -45,19 +50,26 @@ export function SiteHeader() {
           {/* User Profile Menu */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="relative h-8 w-8 rounded-full">
+              <Button variant="ghost" className="flex items-center gap-3 px-3 py-2 h-auto">
                 <Avatar className="h-8 w-8">
-                  <AvatarImage src="/avatars/01.png" alt="User" />
+                  <AvatarImage src="/avatars/01.png" alt="Dr. Sarah Johnson" />
                   <AvatarFallback>
                     <IconUser className="h-4 w-4" />
                   </AvatarFallback>
                 </Avatar>
+                <div className="hidden md:block text-left">
+                  <div className="text-sm font-medium">Dr. Sarah Johnson</div>
+                  <div className="text-xs text-muted-foreground">Administrator</div>
+                </div>
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-56" align="end" forceMount>
               <DropdownMenuLabel className="font-normal">
                 <div className="flex flex-col space-y-1">
                   <p className="text-sm font-medium leading-none">Dr. Sarah Johnson</p>
+                  <p className="text-xs leading-none text-muted-foreground">
+                    Administrator
+                  </p>
                   <p className="text-xs leading-none text-muted-foreground">
                     sarah.johnson@clinic.com
                   </p>
