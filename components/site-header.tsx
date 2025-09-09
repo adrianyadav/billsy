@@ -1,8 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Separator } from "@/components/ui/separator";
-import { SidebarTrigger } from "@/components/ui/sidebar";
-import { IconSearch, IconBell, IconUser } from "@tabler/icons-react";
+import { IconSearch, IconBell, IconUser, IconStethoscope } from "@tabler/icons-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -15,15 +13,12 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export function SiteHeader() {
   return (
-    <header className="flex h-(--header-height) shrink-0 items-center gap-2 border-b bg-white">
+    <header className="flex h-(--header-height) shrink-0 items-center gap-2 border-b bg-white w-full">
       <div className="flex w-full items-center gap-4 px-4 lg:px-6">
-        {/* Left: Sidebar Trigger */}
+        {/* Left: Logo */}
         <div className="flex items-center gap-2">
-          <SidebarTrigger className="-ml-1" />
-          <Separator
-            orientation="vertical"
-            className="mx-2 data-[orientation=vertical]:h-4"
-          />
+          <IconStethoscope className="h-6 w-6 text-blue-600" />
+          <span className="font-bold text-lg text-blue-600">Billsy</span>
         </div>
 
         {/* Center: Search Bar */}
