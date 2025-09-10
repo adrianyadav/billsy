@@ -271,7 +271,7 @@ export function RecentTransactionsTable() {
     })
 
     return (
-        <div className="w-full px-4 lg:px-6">
+        <div className="w-full">
             <div className="rounded-lg border bg-card">
                 <div className="p-6">
                     <div className="flex items-center justify-between">

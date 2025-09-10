@@ -3,7 +3,6 @@ import { headers } from "next/headers";
 
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { ModeToggle } from "@/components/mode-toggle";
 import {
   IconChevronRight,
   IconStethoscope,
@@ -32,7 +31,6 @@ export default async function page() {
           </div>
           <nav className="flex items-center gap-6">
             <div className="flex items-center gap-2">
-              <ModeToggle />
               {session?.user ? (
                 <a href="/dashboard">
                   <Button variant="outline" size="sm">

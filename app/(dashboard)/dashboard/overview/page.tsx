@@ -131,65 +131,59 @@ export default function OverviewPage() {
                     </CardHeader>
                     <CardContent>
                         <div className="text-2xl font-bold">
-                            ${currentMonth.revenue.toLocaleString()}
+                            $59,800
                         </div>
                         <div className="flex items-center text-xs text-muted-foreground">
-                            {revenueGrowth > 0 ? (
-                                <IconTrendingUp className="h-3 w-3 mr-1" />
-                            ) : (
-                                <IconTrendingDown className="h-3 w-3 mr-1" />
-                            )}
-                            <span>{Math.abs(revenueGrowth).toFixed(1)}% from last month</span>
+                            <IconTrendingUp className="h-3 w-3 mr-1" />
+                            <span>+12.3% from last month</span>
                         </div>
                     </CardContent>
                 </Card>
 
                 <Card>
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">Total Claims</CardTitle>
-                        <IconFileText className="h-4 w-4 text-green-600" />
+                        <CardTitle className="text-sm font-medium">Total Patients</CardTitle>
+                        <IconUsers className="h-4 w-4 text-green-600" />
                     </CardHeader>
                     <CardContent>
                         <div className="text-2xl font-bold">
-                            {currentMonth.claims.toLocaleString()}
+                            168
                         </div>
                         <div className="flex items-center text-xs text-muted-foreground">
-                            {claimsGrowth > 0 ? (
-                                <IconTrendingUp className="h-3 w-3 mr-1" />
-                            ) : (
-                                <IconTrendingDown className="h-3 w-3 mr-1" />
-                            )}
-                            <span>{Math.abs(claimsGrowth).toFixed(1)}% from last month</span>
+                            <IconTrendingUp className="h-3 w-3 mr-1" />
+                            <span>+8.7% from last month</span>
                         </div>
                     </CardContent>
                 </Card>
 
                 <Card>
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">Avg Claim Value</CardTitle>
+                        <CardTitle className="text-sm font-medium">Avg. per Appointment</CardTitle>
                         <IconCurrencyDollar className="h-4 w-4 text-amber-600" />
                     </CardHeader>
                     <CardContent>
                         <div className="text-2xl font-bold">
-                            ${currentMonth.avgClaim}
+                            $356
                         </div>
-                        <div className="text-xs text-muted-foreground">
-                            Per claim processed
+                        <div className="flex items-center text-xs text-muted-foreground">
+                            <IconTrendingUp className="h-3 w-3 mr-1" />
+                            <span>+3.2% from last month</span>
                         </div>
                     </CardContent>
                 </Card>
 
                 <Card>
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">Processing Time</CardTitle>
-                        <IconClock className="h-4 w-4 text-purple-600" />
+                        <CardTitle className="text-sm font-medium">Utilisation Rate</CardTitle>
+                        <IconChartPie className="h-4 w-4 text-purple-600" />
                     </CardHeader>
                     <CardContent>
                         <div className="text-2xl font-bold">
-                            10.5 days
+                            87.5%
                         </div>
-                        <div className="text-xs text-muted-foreground">
-                            Average processing time
+                        <div className="flex items-center text-xs text-muted-foreground">
+                            <IconTrendingDown className="h-3 w-3 mr-1" />
+                            <span>-2.1% from last month</span>
                         </div>
                     </CardContent>
                 </Card>
@@ -334,120 +328,6 @@ export default function OverviewPage() {
                 </CardContent>
             </Card>
 
-            {/* Performance Indicators */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <Card>
-                    <CardHeader>
-                        <CardTitle className="flex items-center gap-2">
-                            <IconCircleCheck className="h-5 w-5 text-green-600" />
-                            Claim Processing Performance
-                        </CardTitle>
-                        <CardDescription>
-                            Key performance indicators for claim processing
-                        </CardDescription>
-                    </CardHeader>
-                    <CardContent className="space-y-4">
-                        <div className="space-y-2">
-                            <div className="flex justify-between text-sm">
-                                <span>First Pass Success Rate</span>
-                                <span className="font-medium">94.2%</span>
-                            </div>
-                            <Progress value={94.2} className="h-2" />
-                        </div>
-                        <div className="space-y-2">
-                            <div className="flex justify-between text-sm">
-                                <span>Average Processing Time</span>
-                                <span className="font-medium">10.5 days</span>
-                            </div>
-                            <Progress value={85} className="h-2" />
-                        </div>
-                        <div className="space-y-2">
-                            <div className="flex justify-between text-sm">
-                                <span>Denial Rate</span>
-                                <span className="font-medium">5.8%</span>
-                            </div>
-                            <Progress value={5.8} className="h-2" />
-                        </div>
-                        <div className="space-y-2">
-                            <div className="flex justify-between text-sm">
-                                <span>Collection Rate</span>
-                                <span className="font-medium">97.1%</span>
-                            </div>
-                            <Progress value={97.1} className="h-2" />
-                        </div>
-                    </CardContent>
-                </Card>
-
-                <Card>
-                    <CardHeader>
-                        <CardTitle className="flex items-center gap-2">
-                            <IconUsers className="h-5 w-5 text-blue-600" />
-                            Provider Performance
-                        </CardTitle>
-                        <CardDescription>
-                            Top performing providers this month
-                        </CardDescription>
-                    </CardHeader>
-                    <CardContent className="space-y-4">
-                        {[
-                            { name: "Dr. Sarah Johnson", specialty: "Cardiology", claims: 145, revenue: 42500 },
-                            { name: "Dr. Michael Chen", specialty: "Orthopedics", claims: 132, revenue: 38900 },
-                            { name: "Dr. Emily Rodriguez", specialty: "Internal Medicine", claims: 128, revenue: 31200 },
-                            { name: "Dr. James Wilson", specialty: "Dermatology", claims: 98, revenue: 28900 },
-                            { name: "Dr. Lisa Thompson", specialty: "Pediatrics", claims: 87, revenue: 25600 }
-                        ].map((provider, index) => (
-                            <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                                <div>
-                                    <div className="font-medium text-sm">{provider.name}</div>
-                                    <div className="text-xs text-gray-600">{provider.specialty}</div>
-                                </div>
-                                <div className="text-right">
-                                    <div className="text-sm font-medium">{provider.claims} claims</div>
-                                    <div className="text-xs text-gray-600">${provider.revenue.toLocaleString()}</div>
-                                </div>
-                            </div>
-                        ))}
-                    </CardContent>
-                </Card>
-            </div>
-
-            {/* Alerts and Notifications */}
-            <Card className="border-amber-200 bg-amber-50">
-                <CardHeader>
-                    <CardTitle className="flex items-center gap-2 text-amber-900">
-                        <IconAlertCircle className="h-5 w-5" />
-                        Important Notifications
-                    </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                    <div className="flex items-start gap-3">
-                        <Badge variant="outline" className="text-amber-700 border-amber-300">
-                            Action Required
-                        </Badge>
-                        <div>
-                            <p className="text-sm font-medium text-amber-900">
-                                Medicare Fee Schedule Update
-                            </p>
-                            <p className="text-xs text-amber-700 mt-1">
-                                New fee schedule effective January 1st. Please review and update your billing codes.
-                            </p>
-                        </div>
-                    </div>
-                    <div className="flex items-start gap-3">
-                        <Badge variant="outline" className="text-blue-700 border-blue-300">
-                            Information
-                        </Badge>
-                        <div>
-                            <p className="text-sm font-medium text-blue-900">
-                                System Maintenance Scheduled
-                            </p>
-                            <p className="text-xs text-blue-700 mt-1">
-                                Planned maintenance on Sunday, 2:00 AM - 4:00 AM EST. System will be unavailable.
-                            </p>
-                        </div>
-                    </div>
-                </CardContent>
-            </Card>
         </div>
     )
 }

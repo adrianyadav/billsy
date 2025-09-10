@@ -11,7 +11,7 @@ import { Progress } from "@/components/ui/progress";
 
 export function DailyMetricsCards() {
   return (
-    <div className="grid grid-cols-1 gap-4 px-4 lg:px-6 @xl/main:grid-cols-2">
+    <div className="grid grid-cols-1 gap-4 @xl/main:grid-cols-2">
       {/* Daily Revenue */}
       <Card>
         <CardHeader className="pb-2">
