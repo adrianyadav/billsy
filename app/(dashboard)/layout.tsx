@@ -30,11 +30,11 @@ export default async function layout({
           {/* Navigation Items */}
           <div className="flex-1 py-4">
             <nav className="space-y-1 px-3">
-              <a href="/dashboard" className="flex items-center gap-3 px-3 py-2 text-sm font-medium text-blue-600 bg-blue-50 rounded-md">
+              <a href="/dashboard" className="flex items-center gap-3 px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-md transition-colors">
                 <IconCalendar className="h-4 w-4" />
                 Today
               </a>
-              <a href="/dashboard/overview" className="flex items-center gap-3 px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-md transition-colors">
+              <a href="/dashboard/overview" className="flex items-center gap-3 px-3 py-2 text-sm font-medium text-blue-600 bg-blue-50 rounded-md">
                 <IconLayoutDashboard className="h-4 w-4" />
                 Overview
               </a>

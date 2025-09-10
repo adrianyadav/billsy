@@ -1,6 +1,6 @@
 export function DashboardHeader() {
     return (
-        <div className="px-4 lg:px-6 pb-4">
+        <div>
             <div className="space-y-1">
                 <h1 className="text-2xl font-bold text-gray-900">
                     Today - Wednesday, August 27, 2025
