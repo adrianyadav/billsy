@@ -1,57 +1,44 @@
-import { IconUsers, IconCurrencyDollar, IconCreditCard } from "@tabler/icons-react";
-
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { IconUsers, IconCurrencyDollar, IconCreditCard, IconFilter, IconDownload } from "@tabler/icons-react";
+import { Button } from "@/components/ui/button";
 
 export function SummaryMetricsCards() {
   return (
-    <div className="grid grid-cols-1 gap-4 @xl/main:grid-cols-3">
-      {/* Total Patients */}
-      <Card>
-        <CardHeader className="pb-2">
-          <CardDescription className="flex items-center gap-2">
-            <IconUsers className="h-4 w-4" />
-            Total Patients
-          </CardDescription>
-          <CardTitle className="text-3xl font-semibold">11</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <p className="text-sm text-muted-foreground">Patients seen today</p>
-        </CardContent>
-      </Card>
+    <div className="bg-white border border-gray-200 rounded-lg p-6">
+      {/* Summary Metrics and Action Buttons */}
+      <div className="flex items-start justify-between mb-6">
+        {/* Summary Metrics */}
+        <div className="flex gap-8">
+          {/* Total Patients */}
+          <div>
+            <div className="text-sm text-gray-600 mb-1">Total Patients</div>
+            <div className="text-2xl font-bold text-gray-800">11</div>
+          </div>
 
-      {/* Total Fees */}
-      <Card>
-        <CardHeader className="pb-2">
-          <CardDescription className="flex items-center gap-2">
-            <IconCurrencyDollar className="h-4 w-4" />
-            Total Fees
-          </CardDescription>
-          <CardTitle className="text-3xl font-semibold">$675.50</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <p className="text-sm text-muted-foreground">Total billing amount</p>
-        </CardContent>
-      </Card>
+          {/* Total Fees */}
+          <div>
+            <div className="text-sm text-gray-600 mb-1">Total Fees</div>
+            <div className="text-2xl font-bold text-gray-800">$675.50</div>
+          </div>
 
-      {/* Total Paid */}
-      <Card>
-        <CardHeader className="pb-2">
-          <CardDescription className="flex items-center gap-2">
-            <IconCreditCard className="h-4 w-4" />
-            Total Paid
-          </CardDescription>
-          <CardTitle className="text-3xl font-semibold">$0.00</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <p className="text-sm text-muted-foreground">Payments received</p>
-        </CardContent>
-      </Card>
+          {/* Total Paid */}
+          <div>
+            <div className="text-sm text-gray-600 mb-1">Total Paid</div>
+            <div className="text-2xl font-bold text-gray-800">$0.00</div>
+          </div>
+        </div>
+
+        {/* Action Buttons */}
+        <div className="flex gap-2">
+          <Button variant="outline" size="sm" className="flex items-center gap-2">
+            <IconFilter className="h-4 w-4" />
+            Filter
+          </Button>
+          <Button variant="outline" size="sm" className="flex items-center gap-2">
+            <IconDownload className="h-4 w-4" />
+            Export
+          </Button>
+        </div>
+      </div>
     </div>
   );
 }
