@@ -15,9 +15,6 @@ import {
   IconUsers,
   IconClock,
   IconActivity,
-  IconAlertCircle,
-  IconCheckCircle,
-  IconXCircle,
   IconBuildingHospital,
   IconChartPie
 } from "@tabler/icons-react"

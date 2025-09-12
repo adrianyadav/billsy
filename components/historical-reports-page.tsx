@@ -17,7 +17,6 @@ import {
   IconUsers,
   IconClock,
   IconCircleCheck,
-  IconAlertCircle,
   IconX,
   IconTarget,
   IconActivity,

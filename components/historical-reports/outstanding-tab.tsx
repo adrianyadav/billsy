@@ -15,9 +15,6 @@ import {
   IconChartBar,
   IconUsers,
   IconCalendarStats,
-  IconAlertCircle,
-  IconCheckCircle,
-  IconXCircle,
   IconActivity,
   IconTarget,
   IconPercentage

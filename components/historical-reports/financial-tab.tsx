@@ -20,10 +20,32 @@ import {
   IconClock
 } from "@tabler/icons-react"
 import { FinancialCharts } from "./financial-charts"
+import {
+  ChartConfig,
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+} from "@/components/ui/chart"
+import {
+  Pie,
+  PieChart,
+  Cell,
+  ResponsiveContainer,
+} from "recharts"
 
 interface FinancialTabProps {
   dateRange: string
 }
+
+// Chart configuration for pie chart
+const paymentTypeChartConfig = {
+  type: {
+    label: "Payment Type",
+  },
+  amount: {
+    label: "Amount",
+  },
+} satisfies ChartConfig
 
 // Mock data for financial analytics
 const financialData = {
@@ -37,10 +59,10 @@ const financialData = {
     growth: 12.3
   },
   paymentTypes: [
-    { type: "Medicare", amount: 185750.25, percentage: 43.8, color: "bg-blue-500" },
-    { type: "Private", amount: 125300.50, percentage: 29.6, color: "bg-green-500" },
-    { type: "DVA", amount: 87500.00, percentage: 20.7, color: "bg-purple-500" },
-    { type: "Workers Comp", amount: 24900.00, percentage: 5.9, color: "bg-orange-500" }
+    { type: "Medicare", amount: 185750.25, percentage: 43.8, color: "#3b82f6" },
+    { type: "Private", amount: 125300.50, percentage: 29.6, color: "#10b981" },
+    { type: "DVA", amount: 87500.00, percentage: 20.7, color: "#8b5cf6" },
+    { type: "Workers Comp", amount: 24900.00, percentage: 5.9, color: "#f59e0b" }
   ],
   monthlyTrends: [
     { month: "Jan", billings: 38500, payments: 35200, outstanding: 3300 },
@@ -132,7 +154,6 @@ export function FinancialTab({ dateRange }: FinancialTabProps) {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Outstanding Amount</CardTitle>
-            <IconAlertCircle className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">
@@ -157,20 +178,54 @@ export function FinancialTab({ dateRange }: FinancialTabProps) {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            {financialData.paymentTypes.map((payment) => (
-              <div key={payment.type} className="space-y-2">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <div className={`w-3 h-3 rounded-full ${payment.color}`} />
+          <div className="grid gap-6 md:grid-cols-2">
+            {/* Pie Chart */}
+            <div className="h-[300px] w-full">
+              <ChartContainer config={paymentTypeChartConfig}>
+                <PieChart>
+                  <Pie
+                    data={financialData.paymentTypes}
+                    dataKey="amount"
+                    nameKey="type"
+                    cx="50%"
+                    cy="50%"
+                    outerRadius={100}
+                    innerRadius={40}
+                    paddingAngle={2}
+                  >
+                    {financialData.paymentTypes.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={entry.color} />
+                    ))}
+                  </Pie>
+                  <ChartTooltip
+                    content={<ChartTooltipContent />}
+                    formatter={(value, name) => [
+                      formatCurrency(Number(value)),
+                      name
+                    ]}
+                  />
+                </PieChart>
+              </ChartContainer>
+            </div>
+            
+            {/* Legend */}
+            <div className="space-y-4">
+              {financialData.paymentTypes.map((payment) => (
+                <div key={payment.type} className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div 
+                      className="w-4 h-4 rounded-full" 
+                      style={{ backgroundColor: payment.color }} 
+                    />
                     <span className="text-sm font-medium">{payment.type}</span>
                   </div>
-                  <span className="text-sm text-muted-foreground">{payment.percentage}%</span>
+                  <div className="text-right">
+                    <div className="text-lg font-semibold">{formatCurrency(payment.amount)}</div>
+                    <div className="text-sm text-muted-foreground">{payment.percentage}%</div>
+                  </div>
                 </div>
-                <div className="text-lg font-semibold">{formatCurrency(payment.amount)}</div>
-                <Progress value={payment.percentage} className="h-2" />
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </CardContent>
       </Card>
@@ -236,46 +291,7 @@ export function FinancialTab({ dateRange }: FinancialTabProps) {
         </CardContent>
       </Card>
 
-      {/* Payment Method Analysis */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <IconCreditCard className="h-5 w-5" />
-            Payment Method Analysis
-          </CardTitle>
-          <CardDescription>
-            Breakdown of payment methods and processing times
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="grid gap-4 md:grid-cols-3">
-            <div className="space-y-2">
-              <div className="flex items-center gap-2">
-                <IconBuildingHospital className="h-4 w-4 text-blue-500" />
-                <span className="font-medium">Medicare</span>
-              </div>
-              <div className="text-2xl font-bold">{formatCurrency(185750.25)}</div>
-              <div className="text-sm text-muted-foreground">Avg: 14 days</div>
-            </div>
-            <div className="space-y-2">
-              <div className="flex items-center gap-2">
-                <IconCreditCard className="h-4 w-4 text-green-500" />
-                <span className="font-medium">Private Insurance</span>
-              </div>
-              <div className="text-2xl font-bold">{formatCurrency(125300.50)}</div>
-              <div className="text-sm text-muted-foreground">Avg: 21 days</div>
-            </div>
-            <div className="space-y-2">
-              <div className="flex items-center gap-2">
-                <IconCash className="h-4 w-4 text-purple-500" />
-                <span className="font-medium">Direct Payment</span>
-              </div>
-              <div className="text-2xl font-bold">{formatCurrency(112400.00)}</div>
-              <div className="text-sm text-muted-foreground">Avg: 0 days</div>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
+      
     </div>
   )
 }

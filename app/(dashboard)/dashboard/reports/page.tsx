@@ -1,5 +1,5 @@
-import { ReportsPage } from "@/components/reports-page";
+import { HistoricalReportsPage } from "@/components/historical-reports-page";
 
 export default function Page() {
-  return <ReportsPage />;
+  return <HistoricalReportsPage />;
 }

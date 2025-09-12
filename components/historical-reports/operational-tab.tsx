@@ -19,8 +19,6 @@ import {
   IconChartLine,
   IconClockHour4,
   IconAlertTriangle,
-  IconCheckCircle,
-  IconXCircle
 } from "@tabler/icons-react"
 import { OperationalCharts } from "./operational-charts"
 
@@ -217,7 +215,7 @@ export function OperationalTab({ dateRange }: OperationalTabProps) {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <IconCheckCircle className="h-5 w-5" />
+              <div className="h-5 w-5" />
               On-Time Performance
             </CardTitle>
             <CardDescription>
