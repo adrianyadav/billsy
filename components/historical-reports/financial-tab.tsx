@@ -50,13 +50,26 @@ const paymentTypeChartConfig = {
 // Mock data for financial analytics
 const financialData = {
   totalBillings: {
-    byServiceDate: 485750.50,
-    byCreatedDate: 472300.25,
-    growth: 8.5
+    byServiceDate: 59800,
+    byCreatedDate: 56900,
+    serviceDateGrowth: 12.3,
+    createdDateGrowth: 8.7
   },
   totalPayments: {
-    byPaidDate: 423450.75,
-    growth: 12.3
+    byPaidDate: 56900,
+    collectionRate: 95.2
+  },
+  billingsPerAppointment: {
+    amount: 356,
+    growth: 23
+  },
+  keyPerformanceRatios: {
+    bulkBillingPercentage: 68.5,
+    medicarePercentage: 68.5,
+    nonMedicarePercentage: 31.5,
+    cdmBillingsPercentage: 13.3,
+    telehealthBillings: 5827,
+    telehealthPercentage: 20.5
   },
   paymentTypes: [
     { type: "Medicare", amount: 185750.25, percentage: 43.8, color: "#3b82f6" },
@@ -65,18 +78,14 @@ const financialData = {
     { type: "Workers Comp", amount: 24900.00, percentage: 5.9, color: "#f59e0b" }
   ],
   monthlyTrends: [
-    { month: "Jan", billings: 38500, payments: 35200, outstanding: 3300 },
-    { month: "Feb", billings: 41200, payments: 38800, outstanding: 2400 },
-    { month: "Mar", billings: 39800, payments: 36500, outstanding: 3300 },
-    { month: "Apr", billings: 45600, payments: 43200, outstanding: 2400 },
-    { month: "May", billings: 47200, payments: 44800, outstanding: 2400 },
-    { month: "Jun", billings: 48900, payments: 46500, outstanding: 2400 },
-    { month: "Jul", billings: 51200, payments: 48800, outstanding: 2400 },
-    { month: "Aug", billings: 49800, payments: 47400, outstanding: 2400 },
-    { month: "Sep", billings: 52300, payments: 49900, outstanding: 2400 },
-    { month: "Oct", billings: 51600, payments: 49200, outstanding: 2400 },
-    { month: "Nov", billings: 53400, payments: 51000, outstanding: 2400 },
-    { month: "Dec", billings: 54850, payments: 52450, outstanding: 2400 }
+    { month: "Jan", billings: 45000, payments: 43000, outstanding: 2000 },
+    { month: "Feb", billings: 48000, payments: 46000, outstanding: 2000 },
+    { month: "Mar", billings: 52000, payments: 48000, outstanding: 4000 },
+    { month: "Apr", billings: 50000, payments: 50000, outstanding: 0 },
+    { month: "May", billings: 55000, payments: 48000, outstanding: 7000 },
+    { month: "Jun", billings: 57000, payments: 52000, outstanding: 5000 },
+    { month: "Jul", billings: 59000, payments: 57000, outstanding: 2000 },
+    { month: "Aug", billings: 60000, payments: 58000, outstanding: 2000 }
   ],
   kpis: [
     { name: "Collection Rate", value: 87.2, target: 90, unit: "%", trend: "up" },
@@ -119,7 +128,7 @@ export function FinancialTab({ dateRange }: FinancialTabProps) {
             <div className="text-2xl font-bold">{formatCurrency(financialData.totalBillings.byServiceDate)}</div>
             <p className="text-xs text-muted-foreground flex items-center gap-1">
               <IconTrendingUp className="h-3 w-3" />
-              +{financialData.totalBillings.growth}% from last period
+              +{financialData.totalBillings.serviceDateGrowth}% from last month
             </p>
           </CardContent>
         </Card>
@@ -131,111 +140,47 @@ export function FinancialTab({ dateRange }: FinancialTabProps) {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{formatCurrency(financialData.totalBillings.byCreatedDate)}</div>
-            <p className="text-xs text-muted-foreground">
-              Administrative billing date
+            <p className="text-xs text-muted-foreground flex items-center gap-1">
+              <IconTrendingUp className="h-3 w-3" />
+              +{financialData.totalBillings.createdDateGrowth}% from last month
             </p>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Payments</CardTitle>
+            <CardTitle className="text-sm font-medium">Total Payments (Paid Date)</CardTitle>
             <IconCurrencyDollar className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{formatCurrency(financialData.totalPayments.byPaidDate)}</div>
-            <p className="text-xs text-muted-foreground flex items-center gap-1">
-              <IconTrendingUp className="h-3 w-3" />
-              +{financialData.totalPayments.growth}% from last period
+            <p className="text-xs text-muted-foreground">
+              {financialData.totalPayments.collectionRate}% collection rate
             </p>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Outstanding Amount</CardTitle>
+            <CardTitle className="text-sm font-medium">Billings per Appointment</CardTitle>
+            <IconTarget className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">
-              {formatCurrency(financialData.totalBillings.byServiceDate - financialData.totalPayments.byPaidDate)}
-            </div>
-            <p className="text-xs text-muted-foreground">
-              Pending collection
+            <div className="text-2xl font-bold">{formatCurrency(financialData.billingsPerAppointment.amount)}</div>
+            <p className="text-xs text-muted-foreground flex items-center gap-1">
+              <IconTrendingUp className="h-3 w-3" />
+              +${financialData.billingsPerAppointment.growth} from last month
             </p>
           </CardContent>
         </Card>
       </div>
-
-      {/* Payment Type Distribution */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <IconChartPie className="h-5 w-5" />
-            Payment Type Distribution
-          </CardTitle>
-          <CardDescription>
-            Revenue breakdown by payment source for {dateRange}
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="grid gap-6 md:grid-cols-2">
-            {/* Pie Chart */}
-            <div className="h-[300px] w-full">
-              <ChartContainer config={paymentTypeChartConfig}>
-                <PieChart>
-                  <Pie
-                    data={financialData.paymentTypes}
-                    dataKey="amount"
-                    nameKey="type"
-                    cx="50%"
-                    cy="50%"
-                    outerRadius={100}
-                    innerRadius={40}
-                    paddingAngle={2}
-                  >
-                    {financialData.paymentTypes.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={entry.color} />
-                    ))}
-                  </Pie>
-                  <ChartTooltip
-                    content={<ChartTooltipContent />}
-                    formatter={(value, name) => [
-                      formatCurrency(Number(value)),
-                      name
-                    ]}
-                  />
-                </PieChart>
-              </ChartContainer>
-            </div>
-            
-            {/* Legend */}
-            <div className="space-y-4">
-              {financialData.paymentTypes.map((payment) => (
-                <div key={payment.type} className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div 
-                      className="w-4 h-4 rounded-full" 
-                      style={{ backgroundColor: payment.color }} 
-                    />
-                    <span className="text-sm font-medium">{payment.type}</span>
-                  </div>
-                  <div className="text-right">
-                    <div className="text-lg font-semibold">{formatCurrency(payment.amount)}</div>
-                    <div className="text-sm text-muted-foreground">{payment.percentage}%</div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </CardContent>
-      </Card>
 
       {/* Monthly Financial Trends */}
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <IconChartLine className="h-5 w-5" />
-            Monthly Financial Trends
+            Financial Trends - 8 Month History
           </CardTitle>
           <CardDescription>
             Billings vs Payments trend analysis over time
@@ -246,50 +191,114 @@ export function FinancialTab({ dateRange }: FinancialTabProps) {
         </CardContent>
       </Card>
 
-      {/* Key Performance Ratios */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <IconTarget className="h-5 w-5" />
-            Key Performance Ratios
-          </CardTitle>
-          <CardDescription>
-            Critical financial performance indicators with targets
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="grid gap-6 md:grid-cols-2">
-            {financialData.kpis.map((kpi) => (
-              <div key={kpi.name} className="space-y-3">
+      {/* Payment Type Distribution and Key Performance Ratios */}
+      <div className="grid gap-6 md:grid-cols-2">
+        {/* Payment Type Distribution */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <IconChartPie className="h-5 w-5" />
+              Payment Type Distribution
+            </CardTitle>
+            <CardDescription>
+              Revenue breakdown by payment source for {dateRange}
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="h-[300px] w-full overflow-hidden">
+              <ChartContainer config={paymentTypeChartConfig} className="h-full w-full">
+                <ResponsiveContainer width="100%" height="100%">
+                  <PieChart>
+                    <Pie
+                      data={financialData.paymentTypes}
+                      dataKey="amount"
+                      nameKey="type"
+                      cx="50%"
+                      cy="50%"
+                      outerRadius={100}
+                      innerRadius={40}
+                      paddingAngle={2}
+                    >
+                      {financialData.paymentTypes.map((entry, index) => (
+                        <Cell key={`cell-${index}`} fill={entry.color} />
+                      ))}
+                    </Pie>
+                    <ChartTooltip
+                      content={<ChartTooltipContent />}
+                      formatter={(value, name) => [
+                        formatCurrency(Number(value)),
+                        name
+                      ]}
+                    />
+                  </PieChart>
+                </ResponsiveContainer>
+              </ChartContainer>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Key Performance Ratios */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <IconTarget className="h-5 w-5" />
+              Key Performance Ratios
+            </CardTitle>
+            <CardDescription>
+              Critical financial performance indicators
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-6">
+              {/* Bulk-billing % of total */}
+              <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <span className="font-medium">{kpi.name}</span>
-                    {getTrendIcon(kpi.trend)}
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className={`text-lg font-bold ${getTrendColor(kpi.trend)}`}>
-                      {kpi.value}{kpi.unit}
-                    </span>
-                    <span className="text-sm text-muted-foreground">
-                      Target: {kpi.target}{kpi.unit}
-                    </span>
-                  </div>
+                  <span className="text-sm font-medium">Bulk-billing % of total</span>
+                  <span className="text-sm font-bold">{financialData.keyPerformanceRatios.bulkBillingPercentage}%</span>
                 </div>
-                <div className="space-y-1">
-                  <div className="flex justify-between text-sm">
-                    <span>Progress</span>
-                    <span>{Math.round((kpi.value / kpi.target) * 100)}%</span>
-                  </div>
-                  <Progress 
-                    value={Math.min((kpi.value / kpi.target) * 100, 100)} 
-                    className="h-2"
-                  />
-                </div>
+                <Progress value={financialData.keyPerformanceRatios.bulkBillingPercentage} className="h-2" />
               </div>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
+
+              {/* Medicare % of total */}
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-medium">Medicare % of total</span>
+                  <span className="text-sm font-bold">{financialData.keyPerformanceRatios.medicarePercentage}%</span>
+                </div>
+                <Progress value={financialData.keyPerformanceRatios.medicarePercentage} className="h-2" />
+              </div>
+
+              {/* Non-medicare % of total */}
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-medium">Non-medicare % of total</span>
+                  <span className="text-sm font-bold">{financialData.keyPerformanceRatios.nonMedicarePercentage}%</span>
+                </div>
+                <Progress value={financialData.keyPerformanceRatios.nonMedicarePercentage} className="h-2" />
+              </div>
+
+              {/* CDM billings as % of total */}
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-medium">CDM billings as % of total</span>
+                  <span className="text-sm font-bold">{financialData.keyPerformanceRatios.cdmBillingsPercentage}%</span>
+                </div>
+                <Progress value={financialData.keyPerformanceRatios.cdmBillingsPercentage} className="h-2" />
+              </div>
+
+              {/* Telehealth billings */}
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-medium">Telehealth billings</span>
+                  <span className="text-sm font-bold">{formatCurrency(financialData.keyPerformanceRatios.telehealthBillings)} ({financialData.keyPerformanceRatios.telehealthPercentage}%)</span>
+                </div>
+                <Progress value={financialData.keyPerformanceRatios.telehealthPercentage} className="h-2" />
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
 
       
     </div>
