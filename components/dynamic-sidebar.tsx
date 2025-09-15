@@ -15,19 +15,19 @@ const navigationItems = [
     label: "Overview",
   },
   {
-    href: "/dashboard/goals",
-    icon: IconTarget,
-    label: "Goals",
-  },
-  {
     href: "/dashboard/reports",
     icon: IconChartBar,
     label: "Reports",
   },
   {
+    href: "/dashboard/goals",
+    icon: IconTarget,
+    label: "Goals",
+  },
+  {
     href: "/dashboard/account",
     icon: IconFileText,
-    label: "Account",
+    label: "MBS",
   },
   {
     href: "/dashboard/setting",

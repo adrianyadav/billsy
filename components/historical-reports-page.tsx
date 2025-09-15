@@ -53,6 +53,7 @@ import { OutstandingTab } from "@/components/historical-reports/outstanding-tab"
 export function HistoricalReportsPage() {
   const [selectedDateRange, setSelectedDateRange] = useState("12m")
   const [isExporting, setIsExporting] = useState(false)
+  const [activeTab, setActiveTab] = useState("financial")
 
   const handleExport = async () => {
     setIsExporting(true)
@@ -127,50 +128,95 @@ export function HistoricalReportsPage() {
       </Card>
 
       {/* Main Analytics Tabs */}
-      <Tabs defaultValue="financial" className="space-y-6">
-        <TabsList className="grid w-full grid-cols-5">
-          <TabsTrigger value="financial" className="flex items-center gap-2">
+      <div className="space-y-6">
+        <div className="grid w-full grid-cols-5 bg-gray-100 p-1 rounded-lg">
+          <button
+            onClick={() => setActiveTab("financial")}
+            className={`flex items-center justify-center gap-2 px-3 py-2 text-sm font-medium rounded-md transition-all ${
+              activeTab === "financial" 
+                ? "bg-white text-gray-900 shadow-sm" 
+                : "text-gray-600 hover:text-gray-900"
+            }`}
+          >
             <IconCurrencyDollar className="h-4 w-4" />
             Financial
-          </TabsTrigger>
-          <TabsTrigger value="operational" className="flex items-center gap-2">
+          </button>
+          <button
+            onClick={() => setActiveTab("operational")}
+            className={`flex items-center justify-center gap-2 px-3 py-2 text-sm font-medium rounded-md transition-all ${
+              activeTab === "operational" 
+                ? "bg-white text-gray-900 shadow-sm" 
+                : "text-gray-600 hover:text-gray-900"
+            }`}
+          >
             <IconActivity className="h-4 w-4" />
             Operational
-          </TabsTrigger>
-          <TabsTrigger value="clinical" className="flex items-center gap-2">
+          </button>
+          <button
+            onClick={() => setActiveTab("clinical")}
+            className={`flex items-center justify-center gap-2 px-3 py-2 text-sm font-medium rounded-md transition-all ${
+              activeTab === "clinical" 
+                ? "bg-white text-gray-900 shadow-sm" 
+                : "text-gray-600 hover:text-gray-900"
+            }`}
+          >
             <IconStethoscope className="h-4 w-4" />
             Clinical
-          </TabsTrigger>
-          <TabsTrigger value="benchmarking" className="flex items-center gap-2">
+          </button>
+          <button
+            onClick={() => setActiveTab("benchmarking")}
+            className={`flex items-center justify-center gap-2 px-3 py-2 text-sm font-medium rounded-md transition-all ${
+              activeTab === "benchmarking" 
+                ? "bg-white text-gray-900 shadow-sm" 
+                : "text-gray-600 hover:text-gray-900"
+            }`}
+          >
             <IconScale className="h-4 w-4" />
             Benchmarking
-          </TabsTrigger>
-          <TabsTrigger value="outstanding" className="flex items-center gap-2">
+          </button>
+          <button
+            onClick={() => setActiveTab("outstanding")}
+            className={`flex items-center justify-center gap-2 px-3 py-2 text-sm font-medium rounded-md transition-all ${
+              activeTab === "outstanding" 
+                ? "bg-white text-gray-900 shadow-sm" 
+                : "text-gray-600 hover:text-gray-900"
+            }`}
+          >
             <IconReceipt className="h-4 w-4" />
             Outstanding
-          </TabsTrigger>
-        </TabsList>
+          </button>
+        </div>
 
-        <TabsContent value="financial" className="space-y-6">
-          <FinancialTab dateRange={selectedDateRange} />
-        </TabsContent>
+        {activeTab === "financial" && (
+          <div className="space-y-6">
+            <FinancialTab dateRange={selectedDateRange} />
+          </div>
+        )}
 
-        <TabsContent value="operational" className="space-y-6">
-          <OperationalTab dateRange={selectedDateRange} />
-        </TabsContent>
+        {activeTab === "operational" && (
+          <div className="space-y-6">
+            <OperationalTab dateRange={selectedDateRange} />
+          </div>
+        )}
 
-        <TabsContent value="clinical" className="space-y-6">
-          <ClinicalTab dateRange={selectedDateRange} />
-        </TabsContent>
+        {activeTab === "clinical" && (
+          <div className="space-y-6">
+            <ClinicalTab dateRange={selectedDateRange} />
+          </div>
+        )}
 
-        <TabsContent value="benchmarking" className="space-y-6">
-          <BenchmarkingTab dateRange={selectedDateRange} />
-        </TabsContent>
+        {activeTab === "benchmarking" && (
+          <div className="space-y-6">
+            <BenchmarkingTab dateRange={selectedDateRange} />
+          </div>
+        )}
 
-        <TabsContent value="outstanding" className="space-y-6">
-          <OutstandingTab dateRange={selectedDateRange} />
-        </TabsContent>
-      </Tabs>
+        {activeTab === "outstanding" && (
+          <div className="space-y-6">
+            <OutstandingTab dateRange={selectedDateRange} />
+          </div>
+        )}
+      </div>
     </div>
   )
 }
