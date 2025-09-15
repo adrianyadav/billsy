@@ -3,7 +3,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
-import { 
+import {
   IconReceipt,
   IconAlertTriangle,
   IconClock,
@@ -150,8 +150,8 @@ export function OutstandingTab({ dateRange }: OutstandingTabProps) {
           <CardContent>
             <div className="text-2xl font-bold">
               {formatCurrency(
-                outstandingData.unbilledAppointments.dollarValue + 
-                outstandingData.billingsOnHold.dollarValue + 
+                outstandingData.unbilledAppointments.dollarValue +
+                outstandingData.billingsOnHold.dollarValue +
                 outstandingData.debtorsOutstanding.dollarValue
               )}
             </div>
@@ -162,212 +162,10 @@ export function OutstandingTab({ dateRange }: OutstandingTabProps) {
         </Card>
       </div>
 
-      {/* Unbilled Appointments Detail */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <IconCalendar className="h-5 w-5" />
-            Unbilled Appointments Analysis
-          </CardTitle>
-          <CardDescription>
-            Appointments that have not yet been billed
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="grid gap-6 md:grid-cols-2">
-            <div className="space-y-4">
-              <h4 className="font-semibold">Summary</h4>
-              <div className="space-y-2">
-                <div className="flex justify-between">
-                  <span>Total Count:</span>
-                  <span className="font-semibold">{outstandingData.unbilledAppointments.count}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Total Value:</span>
-                  <span className="font-semibold">{formatCurrency(outstandingData.unbilledAppointments.dollarValue)}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Average Age:</span>
-                  <span className={`font-semibold ${getAgeColor(outstandingData.unbilledAppointments.averageAge)}`}>
-                    {outstandingData.unbilledAppointments.averageAge} days
-                  </span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Oldest:</span>
-                  <span className={`font-semibold ${getAgeColor(outstandingData.unbilledAppointments.oldestAge)}`}>
-                    {outstandingData.unbilledAppointments.oldestAge} days
-                  </span>
-                </div>
-              </div>
-            </div>
 
-            <div className="space-y-4">
-              <h4 className="font-semibold">Age Distribution</h4>
-              <div className="space-y-2">
-                <div className="flex items-center justify-between">
-                  <span className="text-sm">Recent (0-7 days)</span>
-                  <Badge variant="default" className="bg-green-100 text-green-800">15</Badge>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-sm">Moderate (8-14 days)</span>
-                  <Badge variant="outline" className="border-yellow-500 text-yellow-700">18</Badge>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-sm">Aging (15-30 days)</span>
-                  <Badge variant="outline" className="border-orange-500 text-orange-700">12</Badge>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-sm">Overdue (30+ days)</span>
-                  <Badge variant="destructive">2</Badge>
-                </div>
-              </div>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* Billings on Hold Analysis */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <IconClock className="h-5 w-5" />
-            Billings on Hold Analysis
-          </CardTitle>
-          <CardDescription>
-            Billings that are temporarily suspended and their reasons
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-4">
-            <div className="grid gap-4 md:grid-cols-2">
-              <div className="space-y-2">
-                <div className="flex justify-between">
-                  <span>Total on Hold:</span>
-                  <span className="font-semibold">{outstandingData.billingsOnHold.count}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Total Value:</span>
-                  <span className="font-semibold">{formatCurrency(outstandingData.billingsOnHold.dollarValue)}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Average Age:</span>
-                  <span className={`font-semibold ${getAgeColor(outstandingData.billingsOnHold.averageAge)}`}>
-                    {outstandingData.billingsOnHold.averageAge} days
-                  </span>
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <h4 className="font-semibold">Hold Reasons</h4>
-                {outstandingData.billingsOnHold.reasons.map((reason) => (
-                  <div key={reason.reason} className="space-y-1">
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm">{reason.reason}</span>
-                      <span className="text-sm font-semibold">{reason.count} ({reason.percentage}%)</span>
-                    </div>
-                    <Progress value={reason.percentage} className="h-1" />
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* Debtors Outstanding Analysis */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <IconReceipt className="h-5 w-5" />
-            Debtors Outstanding Analysis
-          </CardTitle>
-          <CardDescription>
-            Outstanding debtors categorized by age buckets
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-4">
-            <div className="grid gap-4 md:grid-cols-2">
-              <div className="space-y-2">
-                <div className="flex justify-between">
-                  <span>Total Debtors:</span>
-                  <span className="font-semibold">{outstandingData.debtorsOutstanding.count}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Total Value:</span>
-                  <span className="font-semibold">{formatCurrency(outstandingData.debtorsOutstanding.dollarValue)}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Average Age:</span>
-                  <span className={`font-semibold ${getAgeColor(outstandingData.debtorsOutstanding.averageAge)}`}>
-                    {outstandingData.debtorsOutstanding.averageAge} days
-                  </span>
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <h4 className="font-semibold">Age Buckets</h4>
-                {outstandingData.debtorsOutstanding.ageBuckets.map((bucket) => (
-                  <div key={bucket.range} className="space-y-1">
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm">{bucket.range}</span>
-                      <div className="flex items-center gap-2">
-                        <span className="text-sm font-semibold">{bucket.count}</span>
-                        <span className="text-sm text-muted-foreground">({bucket.percentage}%)</span>
-                      </div>
-                    </div>
-                    <div className="text-xs text-muted-foreground">
-                      Value: {formatCurrency(bucket.value)}
-                    </div>
-                    <Progress value={bucket.percentage} className="h-1" />
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* Collection Metrics */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <IconTarget className="h-5 w-5" />
-            Collection Performance Metrics
-          </CardTitle>
-          <CardDescription>
-            Key performance indicators for debt collection
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            <div className="text-center">
-              <div className="text-2xl font-bold text-green-600">{outstandingData.collectionMetrics.collectionRate}%</div>
-              <div className="text-sm text-muted-foreground">Collection Rate</div>
-              <div className="text-xs text-muted-foreground mt-1">
-                Target: {outstandingData.collectionMetrics.targetCollectionRate}%
-              </div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-blue-600">{outstandingData.collectionMetrics.averageCollectionTime} days</div>
-              <div className="text-sm text-muted-foreground">Avg Collection Time</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-orange-600">{outstandingData.collectionMetrics.writeOffRate}%</div>
-              <div className="text-sm text-muted-foreground">Write-off Rate</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-purple-600">
-                {formatCurrency(outstandingData.debtorsOutstanding.dollarValue * (1 - outstandingData.collectionMetrics.collectionRate / 100))}
-              </div>
-              <div className="text-sm text-muted-foreground">At Risk Amount</div>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
 
       {/* Monthly Appointment Trends */}
-      <Card>
+      {/* <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <IconChartLine className="h-5 w-5" />
@@ -380,7 +178,7 @@ export function OutstandingTab({ dateRange }: OutstandingTabProps) {
         <CardContent>
           <OutstandingCharts data={outstandingData.monthlyAppointmentTrends} />
         </CardContent>
-      </Card>
+      </Card> */}
     </div>
   )
 }
