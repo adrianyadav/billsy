@@ -64,8 +64,9 @@ export default async function page() {
             Streamline Your Medical Practice Billing
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl">
-            Billsy is the comprehensive billing solution designed specifically for medical practices.
-            Manage invoices, track payments, and optimize your revenue with ease.
+            Billsy is the comprehensive billing solution designed specifically
+            for medical practices. Manage invoices, track payments, and optimize
+            your revenue with ease.
           </p>
           <div className="flex gap-4 mt-4">
             <Link href="/signup">
@@ -86,9 +87,12 @@ export default async function page() {
       <section className="py-16 bg-muted/50">
         <div className="container">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Everything You Need for Medical Billing</h2>
+            <h2 className="text-3xl font-bold mb-4">
+              Everything You Need for Medical Billing
+            </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Built specifically for medical practices with features that matter to healthcare providers.
+              Built specifically for medical practices with features that matter
+              to healthcare providers.
             </p>
           </div>
 
@@ -99,7 +103,8 @@ export default async function page() {
               </div>
               <h3 className="text-xl font-semibold mb-2">Smart Invoicing</h3>
               <p className="text-muted-foreground">
-                Create professional invoices with Medicare codes, item numbers, and automated calculations.
+                Create professional invoices with Medicare codes, item numbers,
+                and automated calculations.
               </p>
             </div>
 
@@ -109,7 +114,8 @@ export default async function page() {
               </div>
               <h3 className="text-xl font-semibold mb-2">Payment Tracking</h3>
               <p className="text-muted-foreground">
-                Monitor payment status, track overdue accounts, and manage bulk billing efficiently.
+                Monitor payment status, track overdue accounts, and manage bulk
+                billing efficiently.
               </p>
             </div>
 
@@ -117,9 +123,12 @@ export default async function page() {
               <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-4">
                 <IconChartBar className="h-6 w-6 text-purple-600" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Analytics & Reports</h3>
+              <h3 className="text-xl font-semibold mb-2">
+                Analytics & Reports
+              </h3>
               <p className="text-muted-foreground">
-                Get insights into your practice performance with detailed reports and analytics.
+                Get insights into your practice performance with detailed
+                reports and analytics.
               </p>
             </div>
 
@@ -129,7 +138,8 @@ export default async function page() {
               </div>
               <h3 className="text-xl font-semibold mb-2">Patient Management</h3>
               <p className="text-muted-foreground">
-                Keep track of patient information, billing history, and account status in one place.
+                Keep track of patient information, billing history, and account
+                status in one place.
               </p>
             </div>
 
@@ -139,7 +149,8 @@ export default async function page() {
               </div>
               <h3 className="text-xl font-semibold mb-2">Real-time Updates</h3>
               <p className="text-muted-foreground">
-                Stay updated with real-time notifications and automated reminders for overdue payments.
+                Stay updated with real-time notifications and automated
+                reminders for overdue payments.
               </p>
             </div>
 
@@ -149,7 +160,8 @@ export default async function page() {
               </div>
               <h3 className="text-xl font-semibold mb-2">Secure & Compliant</h3>
               <p className="text-muted-foreground">
-                HIPAA-compliant security with encrypted data storage and secure payment processing.
+                HIPAA-compliant security with encrypted data storage and secure
+                payment processing.
               </p>
             </div>
           </div>
@@ -166,29 +178,42 @@ export default async function page() {
                 <div className="flex items-start gap-3">
                   <IconCheck className="h-5 w-5 text-green-600 mt-1 flex-shrink-0" />
                   <div>
-                    <h3 className="font-semibold">Designed for Medical Practices</h3>
-                    <p className="text-muted-foreground">Built specifically for healthcare providers with medical billing codes and workflows.</p>
+                    <h3 className="font-semibold">
+                      Designed for Medical Practices
+                    </h3>
+                    <p className="text-muted-foreground">
+                      Built specifically for healthcare providers with medical
+                      billing codes and workflows.
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <IconCheck className="h-5 w-5 text-green-600 mt-1 flex-shrink-0" />
                   <div>
                     <h3 className="font-semibold">Easy to Use</h3>
-                    <p className="text-muted-foreground">Intuitive interface that your staff can learn quickly without extensive training.</p>
+                    <p className="text-muted-foreground">
+                      Intuitive interface that your staff can learn quickly
+                      without extensive training.
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <IconCheck className="h-5 w-5 text-green-600 mt-1 flex-shrink-0" />
                   <div>
                     <h3 className="font-semibold">Save Time & Money</h3>
-                    <p className="text-muted-foreground">Automate repetitive tasks and reduce billing errors to improve your bottom line.</p>
+                    <p className="text-muted-foreground">
+                      Automate repetitive tasks and reduce billing errors to
+                      improve your bottom line.
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <IconCheck className="h-5 w-5 text-green-600 mt-1 flex-shrink-0" />
                   <div>
                     <h3 className="font-semibold">24/7 Support</h3>
-                    <p className="text-muted-foreground">Get help when you need it with our dedicated support team.</p>
+                    <p className="text-muted-foreground">
+                      Get help when you need it with our dedicated support team.
+                    </p>
                   </div>
                 </div>
               </div>
@@ -196,10 +221,14 @@ export default async function page() {
             <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-lg p-8">
               <h3 className="text-2xl font-bold mb-4">Ready to Get Started?</h3>
               <p className="text-muted-foreground mb-6">
-                Join hundreds of medical practices already using Billsy to streamline their billing process.
+                Join hundreds of medical practices already using Billsy to
+                streamline their billing process.
               </p>
               <Link href="/signup">
-                <Button size="lg" className="w-full bg-blue-600 hover:bg-blue-700">
+                <Button
+                  size="lg"
+                  className="w-full bg-blue-600 hover:bg-blue-700"
+                >
                   Start Your Free Trial
                 </Button>
               </Link>

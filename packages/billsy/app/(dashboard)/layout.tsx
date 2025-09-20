@@ -31,9 +31,7 @@ export default async function layout({
         <div className="flex-1 flex flex-col">
           <div className="flex flex-1 flex-col">
             <div className="@container/main flex flex-1 flex-col gap-2 px-6 py-6">
-              <div className="flex flex-col gap-4 md:gap-6">
-                {children}
-              </div>
+              <div className="flex flex-col gap-4 md:gap-6">{children}</div>
             </div>
           </div>
         </div>

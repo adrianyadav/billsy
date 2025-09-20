@@ -1,11 +1,11 @@
-"use client"
+"use client";
 
 import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from "@/components/ui/chart"
+} from "@/components/ui/chart";
 import {
   Line,
   LineChart,
@@ -17,15 +17,15 @@ import {
   ResponsiveContainer,
   Area,
   AreaChart,
-} from "recharts"
+} from "recharts";
 
 interface OperationalChartsProps {
   data: Array<{
-    month: string
-    billingsPerHour: number
-    appointmentsPerHour: number
-    utilization: number
-  }>
+    month: string;
+    billingsPerHour: number;
+    appointmentsPerHour: number;
+    utilization: number;
+  }>;
 }
 
 const chartConfig = {
@@ -41,7 +41,7 @@ const chartConfig = {
     label: "Utilization %",
     color: "hsl(var(--chart-3))",
   },
-} satisfies ChartConfig
+} satisfies ChartConfig;
 
 export function OperationalCharts({ data }: OperationalChartsProps) {
   return (
@@ -51,23 +51,22 @@ export function OperationalCharts({ data }: OperationalChartsProps) {
         <ChartContainer config={chartConfig}>
           <LineChart data={data}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis 
-              dataKey="month" 
+            <XAxis
+              dataKey="month"
               tickLine={false}
               axisLine={false}
               tickMargin={8}
             />
-            <YAxis 
-              tickLine={false}
-              axisLine={false}
-              tickMargin={8}
-            />
+            <YAxis tickLine={false} axisLine={false} tickMargin={8} />
             <ChartTooltip
               content={<ChartTooltipContent />}
               formatter={(value, name) => [
                 `${Number(value).toFixed(1)}${name === "utilization" ? "%" : ""}`,
-                name === "billingsPerHour" ? "Billings/Hour" : 
-                name === "appointmentsPerHour" ? "Appointments/Hour" : "Utilization %"
+                name === "billingsPerHour"
+                  ? "Billings/Hour"
+                  : name === "appointmentsPerHour"
+                    ? "Appointments/Hour"
+                    : "Utilization %",
               ]}
             />
             <Line
@@ -75,7 +74,11 @@ export function OperationalCharts({ data }: OperationalChartsProps) {
               dataKey="billingsPerHour"
               stroke="var(--color-billingsPerHour)"
               strokeWidth={2}
-              dot={{ fill: "var(--color-billingsPerHour)", strokeWidth: 2, r: 4 }}
+              dot={{
+                fill: "var(--color-billingsPerHour)",
+                strokeWidth: 2,
+                r: 4,
+              }}
               activeDot={{ r: 6 }}
             />
             <Line
@@ -83,7 +86,11 @@ export function OperationalCharts({ data }: OperationalChartsProps) {
               dataKey="appointmentsPerHour"
               stroke="var(--color-appointmentsPerHour)"
               strokeWidth={2}
-              dot={{ fill: "var(--color-appointmentsPerHour)", strokeWidth: 2, r: 4 }}
+              dot={{
+                fill: "var(--color-appointmentsPerHour)",
+                strokeWidth: 2,
+                r: 4,
+              }}
               activeDot={{ r: 6 }}
             />
           </LineChart>
@@ -95,13 +102,13 @@ export function OperationalCharts({ data }: OperationalChartsProps) {
         <ChartContainer config={chartConfig}>
           <BarChart data={data}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis 
-              dataKey="month" 
+            <XAxis
+              dataKey="month"
               tickLine={false}
               axisLine={false}
               tickMargin={8}
             />
-            <YAxis 
+            <YAxis
               tickLine={false}
               axisLine={false}
               tickMargin={8}
@@ -111,11 +118,11 @@ export function OperationalCharts({ data }: OperationalChartsProps) {
               content={<ChartTooltipContent />}
               formatter={(value, name) => [
                 `${Number(value).toFixed(1)}%`,
-                "Utilization"
+                "Utilization",
               ]}
             />
-            <Bar 
-              dataKey="utilization" 
+            <Bar
+              dataKey="utilization"
               fill="var(--color-utilization)"
               radius={[4, 4, 0, 0]}
             />
@@ -128,23 +135,22 @@ export function OperationalCharts({ data }: OperationalChartsProps) {
         <ChartContainer config={chartConfig}>
           <AreaChart data={data}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis 
-              dataKey="month" 
+            <XAxis
+              dataKey="month"
               tickLine={false}
               axisLine={false}
               tickMargin={8}
             />
-            <YAxis 
-              tickLine={false}
-              axisLine={false}
-              tickMargin={8}
-            />
+            <YAxis tickLine={false} axisLine={false} tickMargin={8} />
             <ChartTooltip
               content={<ChartTooltipContent />}
               formatter={(value, name) => [
                 `${Number(value).toFixed(1)}${name === "utilization" ? "%" : ""}`,
-                name === "billingsPerHour" ? "Billings/Hour" : 
-                name === "appointmentsPerHour" ? "Appointments/Hour" : "Utilization %"
+                name === "billingsPerHour"
+                  ? "Billings/Hour"
+                  : name === "appointmentsPerHour"
+                    ? "Appointments/Hour"
+                    : "Utilization %",
               ]}
             />
             <Area
@@ -167,5 +173,5 @@ export function OperationalCharts({ data }: OperationalChartsProps) {
         </ChartContainer>
       </div>
     </div>
-  )
+  );
 }

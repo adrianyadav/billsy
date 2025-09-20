@@ -1,11 +1,11 @@
-"use client"
+"use client";
 
 import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from "@/components/ui/chart"
+} from "@/components/ui/chart";
 import {
   Line,
   LineChart,
@@ -18,16 +18,16 @@ import {
   Area,
   AreaChart,
   ComposedChart,
-} from "recharts"
+} from "recharts";
 
 interface ClinicalChartsProps {
   data: Array<{
-    month: string
-    consultations: number
-    procedures: number
-    investigations: number
-    revenue: number
-  }>
+    month: string;
+    consultations: number;
+    procedures: number;
+    investigations: number;
+    revenue: number;
+  }>;
 }
 
 const chartConfig = {
@@ -47,7 +47,7 @@ const chartConfig = {
     label: "Revenue",
     color: "hsl(var(--chart-4))",
   },
-} satisfies ChartConfig
+} satisfies ChartConfig;
 
 export function ClinicalCharts({ data }: ClinicalChartsProps) {
   return (
@@ -57,23 +57,22 @@ export function ClinicalCharts({ data }: ClinicalChartsProps) {
         <ChartContainer config={chartConfig}>
           <LineChart data={data}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis 
-              dataKey="month" 
+            <XAxis
+              dataKey="month"
               tickLine={false}
               axisLine={false}
               tickMargin={8}
             />
-            <YAxis 
-              tickLine={false}
-              axisLine={false}
-              tickMargin={8}
-            />
+            <YAxis tickLine={false} axisLine={false} tickMargin={8} />
             <ChartTooltip
               content={<ChartTooltipContent />}
               formatter={(value, name) => [
                 `${Number(value).toLocaleString()}`,
-                name === "consultations" ? "Consultations" : 
-                name === "procedures" ? "Procedures" : "Investigations"
+                name === "consultations"
+                  ? "Consultations"
+                  : name === "procedures"
+                    ? "Procedures"
+                    : "Investigations",
               ]}
             />
             <Line
@@ -97,7 +96,11 @@ export function ClinicalCharts({ data }: ClinicalChartsProps) {
               dataKey="investigations"
               stroke="var(--color-investigations)"
               strokeWidth={2}
-              dot={{ fill: "var(--color-investigations)", strokeWidth: 2, r: 4 }}
+              dot={{
+                fill: "var(--color-investigations)",
+                strokeWidth: 2,
+                r: 4,
+              }}
               activeDot={{ r: 6 }}
             />
           </LineChart>
@@ -109,37 +112,36 @@ export function ClinicalCharts({ data }: ClinicalChartsProps) {
         <ChartContainer config={chartConfig}>
           <BarChart data={data}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis 
-              dataKey="month" 
+            <XAxis
+              dataKey="month"
               tickLine={false}
               axisLine={false}
               tickMargin={8}
             />
-            <YAxis 
-              tickLine={false}
-              axisLine={false}
-              tickMargin={8}
-            />
+            <YAxis tickLine={false} axisLine={false} tickMargin={8} />
             <ChartTooltip
               content={<ChartTooltipContent />}
               formatter={(value, name) => [
                 `${Number(value).toLocaleString()}`,
-                name === "consultations" ? "Consultations" : 
-                name === "procedures" ? "Procedures" : "Investigations"
+                name === "consultations"
+                  ? "Consultations"
+                  : name === "procedures"
+                    ? "Procedures"
+                    : "Investigations",
               ]}
             />
-            <Bar 
-              dataKey="consultations" 
+            <Bar
+              dataKey="consultations"
               fill="var(--color-consultations)"
               radius={[4, 4, 0, 0]}
             />
-            <Bar 
-              dataKey="procedures" 
+            <Bar
+              dataKey="procedures"
               fill="var(--color-procedures)"
               radius={[4, 4, 0, 0]}
             />
-            <Bar 
-              dataKey="investigations" 
+            <Bar
+              dataKey="investigations"
               fill="var(--color-investigations)"
               radius={[4, 4, 0, 0]}
             />
@@ -152,19 +154,19 @@ export function ClinicalCharts({ data }: ClinicalChartsProps) {
         <ChartContainer config={chartConfig}>
           <ComposedChart data={data}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis 
-              dataKey="month" 
+            <XAxis
+              dataKey="month"
               tickLine={false}
               axisLine={false}
               tickMargin={8}
             />
-            <YAxis 
+            <YAxis
               yAxisId="left"
               tickLine={false}
               axisLine={false}
               tickMargin={8}
             />
-            <YAxis 
+            <YAxis
               yAxisId="right"
               orientation="right"
               tickLine={false}
@@ -175,13 +177,15 @@ export function ClinicalCharts({ data }: ClinicalChartsProps) {
             <ChartTooltip
               content={<ChartTooltipContent />}
               formatter={(value, name) => [
-                name === "revenue" ? `$${Number(value).toLocaleString()}` : `${Number(value).toLocaleString()}`,
-                name === "revenue" ? "Revenue" : "Total Services"
+                name === "revenue"
+                  ? `$${Number(value).toLocaleString()}`
+                  : `${Number(value).toLocaleString()}`,
+                name === "revenue" ? "Revenue" : "Total Services",
               ]}
             />
-            <Bar 
+            <Bar
               yAxisId="left"
-              dataKey="consultations" 
+              dataKey="consultations"
               fill="var(--color-consultations)"
               radius={[4, 4, 0, 0]}
             />
@@ -197,5 +201,5 @@ export function ClinicalCharts({ data }: ClinicalChartsProps) {
         </ChartContainer>
       </div>
     </div>
-  )
+  );
 }

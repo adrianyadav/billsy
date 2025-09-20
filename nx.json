@@ -1,0 +1,17 @@
+{
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "targetDefaults": {
+    "build": {
+      "cache": true
+    },
+    "dev": {
+      "cache": true
+    },
+    "start": {
+      "cache": true
+    },
+    "lint": {
+      "cache": true
+    }
+  }
+}
