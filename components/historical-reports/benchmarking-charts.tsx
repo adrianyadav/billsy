@@ -1,11 +1,11 @@
-"use client"
+"use client";
 
 import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from "@/components/ui/chart"
+} from "@/components/ui/chart";
 import {
   Bar,
   BarChart,
@@ -16,15 +16,15 @@ import {
   Scatter,
   ScatterChart,
   Cell,
-} from "recharts"
+} from "recharts";
 
 interface BenchmarkingChartsProps {
   data: Array<{
-    practice: string
-    billings: number
-    patients: number
-    efficiency: number
-  }>
+    practice: string;
+    billings: number;
+    patients: number;
+    efficiency: number;
+  }>;
 }
 
 const chartConfig = {
@@ -40,9 +40,16 @@ const chartConfig = {
     label: "Efficiency",
     color: "hsl(var(--chart-3))",
   },
-} satisfies ChartConfig
+} satisfies ChartConfig;
 
-const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8', '#82CA9D']
+const COLORS = [
+  "#0088FE",
+  "#00C49F",
+  "#FFBB28",
+  "#FF8042",
+  "#8884D8",
+  "#82CA9D",
+];
 
 export function BenchmarkingCharts({ data }: BenchmarkingChartsProps) {
   return (
@@ -52,8 +59,8 @@ export function BenchmarkingCharts({ data }: BenchmarkingChartsProps) {
         <ChartContainer config={chartConfig}>
           <BarChart data={data}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis 
-              dataKey="practice" 
+            <XAxis
+              dataKey="practice"
               tickLine={false}
               axisLine={false}
               tickMargin={8}
@@ -61,7 +68,7 @@ export function BenchmarkingCharts({ data }: BenchmarkingChartsProps) {
               textAnchor="end"
               height={80}
             />
-            <YAxis 
+            <YAxis
               tickLine={false}
               axisLine={false}
               tickMargin={8}
@@ -71,16 +78,19 @@ export function BenchmarkingCharts({ data }: BenchmarkingChartsProps) {
               content={<ChartTooltipContent />}
               formatter={(value, name) => [
                 `$${Number(value).toLocaleString()}`,
-                "Billings"
+                "Billings",
               ]}
             />
-            <Bar 
-              dataKey="billings" 
+            <Bar
+              dataKey="billings"
               fill="var(--color-billings)"
               radius={[4, 4, 0, 0]}
             >
               {data.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                <Cell
+                  key={`cell-${index}`}
+                  fill={COLORS[index % COLORS.length]}
+                />
               ))}
             </Bar>
           </BarChart>
@@ -92,15 +102,15 @@ export function BenchmarkingCharts({ data }: BenchmarkingChartsProps) {
         <ChartContainer config={chartConfig}>
           <ScatterChart data={data}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis 
-              dataKey="efficiency" 
+            <XAxis
+              dataKey="efficiency"
               tickLine={false}
               axisLine={false}
               tickMargin={8}
               tickFormatter={(value) => `${value}%`}
             />
-            <YAxis 
-              dataKey="billings" 
+            <YAxis
+              dataKey="billings"
               tickLine={false}
               axisLine={false}
               tickMargin={8}
@@ -109,16 +119,18 @@ export function BenchmarkingCharts({ data }: BenchmarkingChartsProps) {
             <ChartTooltip
               content={<ChartTooltipContent />}
               formatter={(value, name) => [
-                name === "efficiency" ? `${Number(value).toFixed(1)}%` : `$${Number(value).toLocaleString()}`,
-                name === "efficiency" ? "Efficiency" : "Billings"
+                name === "efficiency"
+                  ? `${Number(value).toFixed(1)}%`
+                  : `$${Number(value).toLocaleString()}`,
+                name === "efficiency" ? "Efficiency" : "Billings",
               ]}
             />
-            <Scatter 
-              dataKey="billings" 
-              fill="var(--color-billings)"
-            >
+            <Scatter dataKey="billings" fill="var(--color-billings)">
               {data.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                <Cell
+                  key={`cell-${index}`}
+                  fill={COLORS[index % COLORS.length]}
+                />
               ))}
             </Scatter>
           </ScatterChart>
@@ -130,8 +142,8 @@ export function BenchmarkingCharts({ data }: BenchmarkingChartsProps) {
         <ChartContainer config={chartConfig}>
           <BarChart data={data}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis 
-              dataKey="practice" 
+            <XAxis
+              dataKey="practice"
               tickLine={false}
               axisLine={false}
               tickMargin={8}
@@ -139,25 +151,21 @@ export function BenchmarkingCharts({ data }: BenchmarkingChartsProps) {
               textAnchor="end"
               height={80}
             />
-            <YAxis 
-              tickLine={false}
-              axisLine={false}
-              tickMargin={8}
-            />
+            <YAxis tickLine={false} axisLine={false} tickMargin={8} />
             <ChartTooltip
               content={<ChartTooltipContent />}
               formatter={(value, name) => [
                 `${Number(value).toLocaleString()}`,
-                name === "patients" ? "Patients" : "Efficiency %"
+                name === "patients" ? "Patients" : "Efficiency %",
               ]}
             />
-            <Bar 
-              dataKey="patients" 
+            <Bar
+              dataKey="patients"
               fill="var(--color-patients)"
               radius={[4, 4, 0, 0]}
             />
-            <Bar 
-              dataKey="efficiency" 
+            <Bar
+              dataKey="efficiency"
               fill="var(--color-efficiency)"
               radius={[4, 4, 0, 0]}
             />
@@ -165,5 +173,5 @@ export function BenchmarkingCharts({ data }: BenchmarkingChartsProps) {
         </ChartContainer>
       </div>
     </div>
-  )
+  );
 }

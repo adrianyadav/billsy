@@ -1,11 +1,11 @@
-"use client"
+"use client";
 
 import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from "@/components/ui/chart"
+} from "@/components/ui/chart";
 import {
   Line,
   LineChart,
@@ -13,15 +13,15 @@ import {
   YAxis,
   CartesianGrid,
   ResponsiveContainer,
-} from "recharts"
+} from "recharts";
 
 interface FinancialChartsProps {
   data: Array<{
-    month: string
-    billings: number
-    payments: number
-    outstanding: number
-  }>
+    month: string;
+    billings: number;
+    payments: number;
+    outstanding: number;
+  }>;
 }
 
 const chartConfig = {
@@ -37,7 +37,7 @@ const chartConfig = {
     label: "Outstanding",
     color: "hsl(var(--chart-3))",
   },
-} satisfies ChartConfig
+} satisfies ChartConfig;
 
 export function FinancialCharts({ data }: FinancialChartsProps) {
   return (
@@ -46,13 +46,13 @@ export function FinancialCharts({ data }: FinancialChartsProps) {
         <ResponsiveContainer width="100%" height="100%">
           <LineChart data={data}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis 
-              dataKey="month" 
+            <XAxis
+              dataKey="month"
               tickLine={false}
               axisLine={false}
               tickMargin={8}
             />
-            <YAxis 
+            <YAxis
               tickLine={false}
               axisLine={false}
               tickMargin={8}
@@ -63,7 +63,11 @@ export function FinancialCharts({ data }: FinancialChartsProps) {
               content={<ChartTooltipContent />}
               formatter={(value, name) => [
                 `$${Number(value).toLocaleString()}`,
-                name === "billings" ? "Billings" : name === "payments" ? "Payments" : "Outstanding"
+                name === "billings"
+                  ? "Billings"
+                  : name === "payments"
+                    ? "Payments"
+                    : "Outstanding",
               ]}
             />
             <Line
@@ -95,5 +99,5 @@ export function FinancialCharts({ data }: FinancialChartsProps) {
         </ResponsiveContainer>
       </ChartContainer>
     </div>
-  )
+  );
 }

@@ -1,15 +1,21 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { 
-  IconCalendar, 
-  IconDownload, 
-  IconFilter, 
-  IconFileText, 
+import { useState } from "react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import {
+  IconCalendar,
+  IconDownload,
+  IconFilter,
+  IconFileText,
   IconChartBar,
   IconTrendingUp,
   IconTrendingDown,
@@ -42,38 +48,45 @@ import {
   IconAlertTriangle,
   IconEye,
   IconEdit,
-  IconRefresh
-} from "@tabler/icons-react"
-import { FinancialTab } from "@/components/historical-reports/financial-tab"
-import { OperationalTab } from "@/components/historical-reports/operational-tab"
-import { ClinicalTab } from "@/components/historical-reports/clinical-tab"
-import { BenchmarkingTab } from "@/components/historical-reports/benchmarking-tab"
-import { OutstandingTab } from "@/components/historical-reports/outstanding-tab"
+  IconRefresh,
+} from "@tabler/icons-react";
+import { FinancialTab } from "@/components/historical-reports/financial-tab";
+import { OperationalTab } from "@/components/historical-reports/operational-tab";
+import { ClinicalTab } from "@/components/historical-reports/clinical-tab";
+import { BenchmarkingTab } from "@/components/historical-reports/benchmarking-tab";
+import { OutstandingTab } from "@/components/historical-reports/outstanding-tab";
 
 export function HistoricalReportsPage() {
-  const [selectedDateRange, setSelectedDateRange] = useState("12m")
-  const [isExporting, setIsExporting] = useState(false)
-  const [activeTab, setActiveTab] = useState("financial")
+  const [selectedDateRange, setSelectedDateRange] = useState("12m");
+  const [isExporting, setIsExporting] = useState(false);
+  const [activeTab, setActiveTab] = useState("financial");
 
   const handleExport = async () => {
-    setIsExporting(true)
+    setIsExporting(true);
     // Simulate export process
-    await new Promise(resolve => setTimeout(resolve, 2000))
-    setIsExporting(false)
-  }
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+    setIsExporting(false);
+  };
 
   return (
     <div className="space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Historical Reports</h1>
+          <h1 className="text-3xl font-bold tracking-tight">
+            Historical Reports
+          </h1>
           <p className="text-muted-foreground">
-            Comprehensive analytics and performance metrics across all practice areas
+            Comprehensive analytics and performance metrics across all practice
+            areas
           </p>
         </div>
         <div className="flex items-center gap-2">
-          <Button variant="outline" onClick={handleExport} disabled={isExporting}>
+          <Button
+            variant="outline"
+            onClick={handleExport}
+            disabled={isExporting}
+          >
             <IconDownload className="h-4 w-4 mr-2" />
             {isExporting ? "Exporting..." : "Export All"}
           </Button>
@@ -103,8 +116,8 @@ export function HistoricalReportsPage() {
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2">
               <label className="text-sm font-medium">Period:</label>
-              <select 
-                value={selectedDateRange} 
+              <select
+                value={selectedDateRange}
                 onChange={(e) => setSelectedDateRange(e.target.value)}
                 className="px-3 py-2 border rounded-md"
               >
@@ -133,8 +146,8 @@ export function HistoricalReportsPage() {
           <button
             onClick={() => setActiveTab("financial")}
             className={`flex items-center justify-center gap-2 px-3 py-2 text-sm font-medium rounded-md transition-all ${
-              activeTab === "financial" 
-                ? "bg-white text-gray-900 shadow-sm" 
+              activeTab === "financial"
+                ? "bg-white text-gray-900 shadow-sm"
                 : "text-gray-600 hover:text-gray-900"
             }`}
           >
@@ -144,8 +157,8 @@ export function HistoricalReportsPage() {
           <button
             onClick={() => setActiveTab("operational")}
             className={`flex items-center justify-center gap-2 px-3 py-2 text-sm font-medium rounded-md transition-all ${
-              activeTab === "operational" 
-                ? "bg-white text-gray-900 shadow-sm" 
+              activeTab === "operational"
+                ? "bg-white text-gray-900 shadow-sm"
                 : "text-gray-600 hover:text-gray-900"
             }`}
           >
@@ -155,8 +168,8 @@ export function HistoricalReportsPage() {
           <button
             onClick={() => setActiveTab("clinical")}
             className={`flex items-center justify-center gap-2 px-3 py-2 text-sm font-medium rounded-md transition-all ${
-              activeTab === "clinical" 
-                ? "bg-white text-gray-900 shadow-sm" 
+              activeTab === "clinical"
+                ? "bg-white text-gray-900 shadow-sm"
                 : "text-gray-600 hover:text-gray-900"
             }`}
           >
@@ -166,8 +179,8 @@ export function HistoricalReportsPage() {
           <button
             onClick={() => setActiveTab("benchmarking")}
             className={`flex items-center justify-center gap-2 px-3 py-2 text-sm font-medium rounded-md transition-all ${
-              activeTab === "benchmarking" 
-                ? "bg-white text-gray-900 shadow-sm" 
+              activeTab === "benchmarking"
+                ? "bg-white text-gray-900 shadow-sm"
                 : "text-gray-600 hover:text-gray-900"
             }`}
           >
@@ -177,8 +190,8 @@ export function HistoricalReportsPage() {
           <button
             onClick={() => setActiveTab("outstanding")}
             className={`flex items-center justify-center gap-2 px-3 py-2 text-sm font-medium rounded-md transition-all ${
-              activeTab === "outstanding" 
-                ? "bg-white text-gray-900 shadow-sm" 
+              activeTab === "outstanding"
+                ? "bg-white text-gray-900 shadow-sm"
                 : "text-gray-600 hover:text-gray-900"
             }`}
           >
@@ -218,5 +231,5 @@ export function HistoricalReportsPage() {
         )}
       </div>
     </div>
-  )
+  );
 }
