@@ -1,7 +1,14 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { IconCalendar, IconLayoutDashboard, IconChartBar, IconTarget, IconFileText, IconSettings } from "@tabler/icons-react";
+import {
+  IconCalendar,
+  IconLayoutDashboard,
+  IconChartBar,
+  IconTarget,
+  IconFileText,
+  IconSettings,
+} from "@tabler/icons-react";
 
 const navigationItems = [
   {
@@ -50,10 +57,11 @@ export function DynamicSidebar() {
               <a
                 key={item.href}
                 href={item.href}
-                className={`flex items-center gap-3 px-3 py-2 text-sm rounded-md transition-colors ${isActive
-                  ? "font-medium text-blue-600 bg-blue-50"
-                  : "text-gray-700 hover:bg-gray-100"
-                  }`}
+                className={`flex items-center gap-3 px-3 py-2 text-sm rounded-md transition-colors ${
+                  isActive
+                    ? "font-medium text-blue-600 bg-blue-50"
+                    : "text-gray-700 hover:bg-gray-100"
+                }`}
               >
                 <item.icon className="h-4 w-4" />
                 {item.label}

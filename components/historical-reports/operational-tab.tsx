@@ -1,9 +1,15 @@
-"use client"
+"use client";
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Progress } from "@/components/ui/progress"
-import { 
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Progress } from "@/components/ui/progress";
+import {
   IconActivity,
   IconClock,
   IconUsers,
@@ -19,10 +25,10 @@ import {
   IconChartLine,
   IconClockHour4,
   IconAlertTriangle,
-} from "@tabler/icons-react"
+} from "@tabler/icons-react";
 
 interface OperationalTabProps {
-  dateRange: string
+  dateRange: string;
 }
 
 // Mock data for operational analytics
@@ -35,20 +41,30 @@ const operationalData = {
     patientsPerHour: 0.88,
     patientsPerHourTarget: 1.0,
     dnaRate: 8.5,
-    missedAppointments: 14
+    missedAppointments: 14,
   },
   timeBreakdown: [
-    { category: "Consulting", hours: 145, percentage: 75.2, color: "bg-blue-500" },
+    {
+      category: "Consulting",
+      hours: 145,
+      percentage: 75.2,
+      color: "bg-blue-500",
+    },
     { category: "Admin", hours: 52, percentage: 18.3, color: "bg-green-500" },
-    { category: "Unbooked", hours: 26, percentage: 6.5, color: "bg-orange-500" }
+    {
+      category: "Unbooked",
+      hours: 26,
+      percentage: 6.5,
+      color: "bg-orange-500",
+    },
   ],
   practiceEfficiency: {
     averageWaitTime: 12.8,
     daysUntilNextAppointment: 4.2,
     utilisation: 87.3,
-    appointmentBillingMismatch: 15
+    appointmentBillingMismatch: 15,
   },
-}
+};
 
 export function OperationalTab({ dateRange }: OperationalTabProps) {
   const getTrendIcon = (current: number, target: number) => {
@@ -56,12 +72,12 @@ export function OperationalTab({ dateRange }: OperationalTabProps) {
       <IconTrendingUp className="h-4 w-4 text-green-600" />
     ) : (
       <IconTrendingDown className="h-4 w-4 text-red-600" />
-    )
-  }
+    );
+  };
 
   const getTrendColor = (current: number, target: number) => {
-    return current >= target ? "text-green-600" : "text-red-600"
-  }
+    return current >= target ? "text-green-600" : "text-red-600";
+  };
 
   return (
     <div className="space-y-6">
@@ -69,11 +85,15 @@ export function OperationalTab({ dateRange }: OperationalTabProps) {
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Billings per Consulting Hour</CardTitle>
+            <CardTitle className="text-sm font-medium">
+              Billings per Consulting Hour
+            </CardTitle>
             <IconChartBar className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">${operationalData.efficiency.billingsPerHour}</div>
+            <div className="text-2xl font-bold">
+              ${operationalData.efficiency.billingsPerHour}
+            </div>
             <p className="text-xs text-muted-foreground">
               Target: ${operationalData.efficiency.billingsPerHourTarget}/hr
             </p>
@@ -82,11 +102,15 @@ export function OperationalTab({ dateRange }: OperationalTabProps) {
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Appointments per Hour</CardTitle>
+            <CardTitle className="text-sm font-medium">
+              Appointments per Hour
+            </CardTitle>
             <IconClock className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{operationalData.efficiency.appointmentsPerHour}</div>
+            <div className="text-2xl font-bold">
+              {operationalData.efficiency.appointmentsPerHour}
+            </div>
             <p className="text-xs text-muted-foreground">
               Target: {operationalData.efficiency.appointmentsPerHourTarget}/hr
             </p>
@@ -95,11 +119,15 @@ export function OperationalTab({ dateRange }: OperationalTabProps) {
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Patients per Hour</CardTitle>
+            <CardTitle className="text-sm font-medium">
+              Patients per Hour
+            </CardTitle>
             <IconUsers className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{operationalData.efficiency.patientsPerHour}</div>
+            <div className="text-2xl font-bold">
+              {operationalData.efficiency.patientsPerHour}
+            </div>
             <p className="text-xs text-muted-foreground">
               Target: {operationalData.efficiency.patientsPerHourTarget}/hr
             </p>
@@ -108,13 +136,18 @@ export function OperationalTab({ dateRange }: OperationalTabProps) {
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">DNA / No-show Rate</CardTitle>
+            <CardTitle className="text-sm font-medium">
+              DNA / No-show Rate
+            </CardTitle>
             <IconUserX className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{operationalData.efficiency.dnaRate}%</div>
+            <div className="text-2xl font-bold">
+              {operationalData.efficiency.dnaRate}%
+            </div>
             <p className="text-xs text-muted-foreground">
-              {operationalData.efficiency.missedAppointments} missed appointments
+              {operationalData.efficiency.missedAppointments} missed
+              appointments
             </p>
           </CardContent>
         </Card>
@@ -166,30 +199,55 @@ export function OperationalTab({ dateRange }: OperationalTabProps) {
             <div className="space-y-4">
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <span className="text-sm font-medium">Average Patient Wait Time</span>
-                  <span className="text-sm font-bold">{operationalData.practiceEfficiency.averageWaitTime} mins</span>
+                  <span className="text-sm font-medium">
+                    Average Patient Wait Time
+                  </span>
+                  <span className="text-sm font-bold">
+                    {operationalData.practiceEfficiency.averageWaitTime} mins
+                  </span>
                 </div>
               </div>
-              
+
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <span className="text-sm font-medium">Days until 3rd Next Available Appointment</span>
-                  <span className="text-sm font-bold">{operationalData.practiceEfficiency.daysUntilNextAppointment} days</span>
+                  <span className="text-sm font-medium">
+                    Days until 3rd Next Available Appointment
+                  </span>
+                  <span className="text-sm font-bold">
+                    {
+                      operationalData.practiceEfficiency
+                        .daysUntilNextAppointment
+                    }{" "}
+                    days
+                  </span>
                 </div>
               </div>
-              
+
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
                   <span className="text-sm font-medium">Utilisation %</span>
-                  <span className="text-sm font-bold">{operationalData.practiceEfficiency.utilisation}%</span>
+                  <span className="text-sm font-bold">
+                    {operationalData.practiceEfficiency.utilisation}%
+                  </span>
                 </div>
-                <Progress value={operationalData.practiceEfficiency.utilisation} className="h-2" />
+                <Progress
+                  value={operationalData.practiceEfficiency.utilisation}
+                  className="h-2"
+                />
               </div>
-              
+
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <span className="text-sm font-medium">Appointment/Billing Length Mismatch</span>
-                  <span className="text-sm font-bold">{operationalData.practiceEfficiency.appointmentBillingMismatch} cases</span>
+                  <span className="text-sm font-medium">
+                    Appointment/Billing Length Mismatch
+                  </span>
+                  <span className="text-sm font-bold">
+                    {
+                      operationalData.practiceEfficiency
+                        .appointmentBillingMismatch
+                    }{" "}
+                    cases
+                  </span>
                 </div>
               </div>
             </div>
@@ -197,5 +255,5 @@ export function OperationalTab({ dateRange }: OperationalTabProps) {
         </Card>
       </div>
     </div>
-  )
+  );
 }

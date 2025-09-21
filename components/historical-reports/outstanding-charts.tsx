@@ -1,11 +1,11 @@
-"use client"
+"use client";
 
 import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from "@/components/ui/chart"
+} from "@/components/ui/chart";
 import {
   Line,
   LineChart,
@@ -18,16 +18,16 @@ import {
   Area,
   AreaChart,
   ComposedChart,
-} from "recharts"
+} from "recharts";
 
 interface OutstandingChartsProps {
   data: Array<{
-    month: string
-    total: number
-    unbilled: number
-    onHold: number
-    outstanding: number
-  }>
+    month: string;
+    total: number;
+    unbilled: number;
+    onHold: number;
+    outstanding: number;
+  }>;
 }
 
 const chartConfig = {
@@ -47,7 +47,7 @@ const chartConfig = {
     label: "Outstanding",
     color: "hsl(var(--chart-4))",
   },
-} satisfies ChartConfig
+} satisfies ChartConfig;
 
 export function OutstandingCharts({ data }: OutstandingChartsProps) {
   return (
@@ -57,24 +57,24 @@ export function OutstandingCharts({ data }: OutstandingChartsProps) {
         <ChartContainer config={chartConfig}>
           <LineChart data={data}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis 
-              dataKey="month" 
+            <XAxis
+              dataKey="month"
               tickLine={false}
               axisLine={false}
               tickMargin={8}
             />
-            <YAxis 
-              tickLine={false}
-              axisLine={false}
-              tickMargin={8}
-            />
+            <YAxis tickLine={false} axisLine={false} tickMargin={8} />
             <ChartTooltip
               content={<ChartTooltipContent />}
               formatter={(value, name) => [
                 `${Number(value).toLocaleString()}`,
-                name === "total" ? "Total Appointments" : 
-                name === "unbilled" ? "Unbilled" :
-                name === "onHold" ? "On Hold" : "Outstanding"
+                name === "total"
+                  ? "Total Appointments"
+                  : name === "unbilled"
+                    ? "Unbilled"
+                    : name === "onHold"
+                      ? "On Hold"
+                      : "Outstanding",
               ]}
             />
             <Line
@@ -118,37 +118,36 @@ export function OutstandingCharts({ data }: OutstandingChartsProps) {
         <ChartContainer config={chartConfig}>
           <BarChart data={data}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis 
-              dataKey="month" 
+            <XAxis
+              dataKey="month"
               tickLine={false}
               axisLine={false}
               tickMargin={8}
             />
-            <YAxis 
-              tickLine={false}
-              axisLine={false}
-              tickMargin={8}
-            />
+            <YAxis tickLine={false} axisLine={false} tickMargin={8} />
             <ChartTooltip
               content={<ChartTooltipContent />}
               formatter={(value, name) => [
                 `${Number(value).toLocaleString()}`,
-                name === "unbilled" ? "Unbilled" :
-                name === "onHold" ? "On Hold" : "Outstanding"
+                name === "unbilled"
+                  ? "Unbilled"
+                  : name === "onHold"
+                    ? "On Hold"
+                    : "Outstanding",
               ]}
             />
-            <Bar 
-              dataKey="unbilled" 
+            <Bar
+              dataKey="unbilled"
               fill="var(--color-unbilled)"
               radius={[4, 4, 0, 0]}
             />
-            <Bar 
-              dataKey="onHold" 
+            <Bar
+              dataKey="onHold"
               fill="var(--color-onHold)"
               radius={[4, 4, 0, 0]}
             />
-            <Bar 
-              dataKey="outstanding" 
+            <Bar
+              dataKey="outstanding"
               fill="var(--color-outstanding)"
               radius={[4, 4, 0, 0]}
             />
@@ -161,19 +160,19 @@ export function OutstandingCharts({ data }: OutstandingChartsProps) {
         <ChartContainer config={chartConfig}>
           <ComposedChart data={data}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis 
-              dataKey="month" 
+            <XAxis
+              dataKey="month"
               tickLine={false}
               axisLine={false}
               tickMargin={8}
             />
-            <YAxis 
+            <YAxis
               yAxisId="left"
               tickLine={false}
               axisLine={false}
               tickMargin={8}
             />
-            <YAxis 
+            <YAxis
               yAxisId="right"
               orientation="right"
               tickLine={false}
@@ -184,12 +183,12 @@ export function OutstandingCharts({ data }: OutstandingChartsProps) {
               content={<ChartTooltipContent />}
               formatter={(value, name) => [
                 `${Number(value).toLocaleString()}`,
-                name === "total" ? "Total Appointments" : "Outstanding Items"
+                name === "total" ? "Total Appointments" : "Outstanding Items",
               ]}
             />
-            <Bar 
+            <Bar
               yAxisId="left"
-              dataKey="total" 
+              dataKey="total"
               fill="var(--color-total)"
               radius={[4, 4, 0, 0]}
             />
@@ -205,5 +204,5 @@ export function OutstandingCharts({ data }: OutstandingChartsProps) {
         </ChartContainer>
       </div>
     </div>
-  )
+  );
 }
