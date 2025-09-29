@@ -14,7 +14,13 @@ module.exports = [
         "warn",
         {
           enforceBuildableLibDependency: true,
-          allow: ["^.*/eslint(\\.base)?\\.config\\.[cm]?[jt]s$"],
+          allow: [
+            "^.*/eslint(\\.base)?\\.config\\.[cm]?[jt]s$",
+            "^@/.*",
+            "^../../components/.*",
+            "^../../hooks/.*",
+            "^../../lib/.*"
+          ],
           depConstraints: [
             {
               sourceTag: "*",

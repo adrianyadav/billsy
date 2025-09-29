@@ -126,16 +126,21 @@ This project uses **Nx** for monorepo management with the following structure:
 
 ```
 billsy/
-├── packages/
-│   └── billsy/              # Main Next.js application
-│       ├── app/             # Next.js app directory
+├── apps/
+│   ├── billsy/              # Frontend Next.js application
+│   │   ├── app/             # Next.js app directory
+│   │   ├── project.json     # Nx project configuration
+│   │   ├── package.json     # Project dependencies
+│   │   ├── next.config.ts   # Next.js configuration
+│   │   └── tailwind.config.js
+│   └── billsy-api/          # Backend NestJS API
+│       ├── src/             # API source code
 │       ├── project.json     # Nx project configuration
-│       ├── package.json     # Project dependencies
-│       ├── next.config.ts   # Next.js configuration
-│       └── tailwind.config.js
-├── components/              # Shared UI components
-├── hooks/                   # Custom React hooks
-├── lib/                     # Utility libraries
+│       └── webpack.config.js
+├── libs/                    # Shared libraries (future)
+├── components/              # Shared UI components (to be moved to libs)
+├── hooks/                   # Custom React hooks (to be moved to libs)
+├── lib/                     # Utility libraries (to be moved to libs)
 ├── prisma/                  # Database schema and migrations
 ├── nx.json                  # Nx workspace configuration
 ├── package.json             # Root package.json with workspace scripts
@@ -246,7 +251,7 @@ pnpm nx reset
 ### Nx Migration (December 2024)
 
 - Migrated from standalone Next.js app to Nx monorepo structure
-- Moved main application to `packages/billsy/`
+- Moved main application to `apps/billsy/`
 - Updated build system to use Nx targets and executors
 - Configured proper working directories for Next.js builds
 - Fixed Prisma schema path references for monorepo structure
@@ -257,7 +262,7 @@ pnpm nx reset
 ### Phase 1: Nx Monorepo Setup ✅ COMPLETED
 
 - [x] Configure Nx workspace
-- [x] Migrate Next.js app to `packages/billsy/`
+- [x] Migrate Next.js app to `apps/billsy/`
 - [x] Fix build system and dependencies
 - [x] Update documentation
 

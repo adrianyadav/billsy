@@ -1,34 +1,34 @@
 {
   "name": "billsy",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "packages/billsy",
+  "sourceRoot": "apps/billsy",
   "projectType": "application",
   "targets": {
     "build": {
       "executor": "nx:run-commands",
       "options": {
-        "cwd": "packages/billsy",
+        "cwd": "apps/billsy",
         "command": "prisma generate --schema=../../prisma/schema.prisma && next build"
       }
     },
     "dev": {
       "executor": "nx:run-commands",
       "options": {
-        "cwd": "packages/billsy",
+        "cwd": "apps/billsy",
         "command": "next dev"
       }
     },
     "start": {
       "executor": "nx:run-commands",
       "options": {
-        "cwd": "packages/billsy",
+        "cwd": "apps/billsy",
         "command": "next start"
       }
     },
     "lint": {
       "executor": "nx:run-commands",
       "options": {
-        "cwd": "packages/billsy",
+        "cwd": "apps/billsy",
         "command": "next lint"
       }
     }
